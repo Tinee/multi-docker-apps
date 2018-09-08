@@ -18,3 +18,4 @@ after_success:
   - docker push tinee/multi-nginx
   - docker push tinee/multi-server
   - docker push tinee/multi-worker
+
