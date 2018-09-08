@@ -1,5 +1,5 @@
 version: '3'
-services: 
+services:
   postgres:
     image: 'postgres:latest'
   redis:
@@ -8,19 +8,18 @@ services:
     restart: always
     build:
       context: './nginx'
-      dockerfile:
-        dev.dockerfile
-    ports: 
+      dockerfile: dev.dockerfile
+    ports:
       - 8080:80
   api:
     container_name: 'api_container'
     build:
       context: './server'
       dockerfile: dev.dockerfile
-    volumes: 
+    volumes:
       - /app/node_modules
       - ./server:/app
-    environment: 
+    environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - PGUSER=postgres
@@ -33,7 +32,7 @@ services:
     build:
       context: './worker'
       dockerfile: dev.dockerfile
-    volumes: 
+    volumes:
       - /app/node_modules
       - ./worker:/app
     environment:
@@ -47,4 +46,3 @@ services:
     volumes:
       - /app/node_modules
       - ./client:/app
-    
