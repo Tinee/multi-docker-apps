@@ -13,7 +13,7 @@ after_success:
   - docker build -t tinee/multi-nginx -f ./nginx/prod.dockerfile .
   - docker build -t tinee/multi-server -f ./server/prod.dockerfile .
   - docker build -t tinee/multi-worker -f ./worker/prod.dockerfile .
-  - echo $DOCKER_PASSWORD | docker login -u="$DOCKER_USERNAME" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USERNAME" --password-stdin
   - docker push tinee/multi-client
   - docker push tinee/multi-nginx
   - docker push tinee/multi-server
