@@ -19,3 +19,15 @@ after_success:
   - docker push tinee/multi-server
   - docker push tinee/multi-worker
 
+deploy: 
+  provider: elasticbeanstalk
+  region: eu-west-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-eu-west-2-743089793964
+  bucket_path: docker-multi
+  on: 
+    branch: master
+  access_key_id: "$AWS_ACCSS_KEY"
+  secret_access_key: 
+    secure: "$AWS_SECRET_KEY"
